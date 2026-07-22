@@ -1,0 +1,84 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dettaglio pianta</title>
+    <th:block th:replace="~{fragments/fragments :: style}"></th:block>
+  </head>
+  <body class="bg-light">
+    <th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
+
+    <div class="container mt-5">
+      <div th:if="${plant != null}" class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="card shadow-sm border-0 overflow-hidden">
+            <img
+              th:src="@{'/' + ${plant.imgUrl}}"
+              class="detail-img"
+              alt="Immagine della pianta"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
+          <div
+            class="bg-white p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-between"
+          >
+            <div>
+              <h1
+                class="display-4 fw-bold text-dark mb-3"
+                th:text="${plant.name}"
+              >
+                Margherita
+              </h1>
+
+              <hr class="my-3 text-secondary opacity-25" />
+
+              <h5 class="text-secondary fw-semibold mb-2">Ingredienti:</h5>
+              <p class="lead text-muted lh-base" th:text="${plant.description}">
+                Pomodoro, mozzarella, basilico fresco e un filo d'olio
+                extravergine d'oliva.
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-top">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <span class="fs-4 text-secondary">Prezzo</span>
+                <span
+                  class="display-6 fw-bold text-success"
+                  th:text="${plant.price} + ' €'"
+                  >4.50 €</span
+                >
+              </div>
+
+              <!-- Pulsante per tornare al menu principale -->
+              <a
+                th:href="@{/plants}"
+                class="btn btn-primary btn-lg w-100 shadow-sm"
+              >
+                <i class="bi bi-arrow-left-circle me-2"></i> Torna al Menu
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        th:if="${plant == null}"
+        class="alert alert-danger shadow-sm text-center p-5 my-5"
+        role="alert"
+      >
+        <h4 class="alert-heading fw-bold mb-3">Elemento Non Trovato!</h4>
+        <p class="mb-4">
+          Siamo spiacenti, la pianta richiesta non è presente nel nostro menu o
+          è stata rimossa.
+        </p>
+        <a th:href="@{/plants}" class="btn btn-outline-danger"
+          >Torna alla lista delle piante</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aggiungi Nuova pianta</title>
+    <th:block th:replace="~{fragments/fragments :: style}"></th:block>
+  </head>
+  <body class="bg-light">
+    <th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
+
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="card shadow-sm border-0 p-4 rounded">
+            <h1 class="h3 fw-bold text-dark mb-4 text-center">
+              Aggiungi una nuova Pianta
+            </h1>
+
+            <form
+              th:action="@{/plants/store}"
+              th:object="${plant}"
+              method="post"
+              novalidate
+            >
+              <div class="mb-3">
+                <label for="name" class="form-label fw-semibold"
+                  >Nome della Pianta</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{name}"
+                  placeholder="Nome pianta..."
+                  required
+                  th:errorClass="is-invalid"
+                />
+
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}"
+                >
+                  <ul>
+                    <li
+                      th:each="err : ${#fields.errors('name')}"
+                      th:text="${err}"
+                    ></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="descrizione" class="form-label fw-semibold"
+                  >Descrizione</label
+                >
+                <textarea
+                  class="form-control"
+                  id="description"
+                  th:field="*{description}"
+                  rows="3"
+                  placeholder="Descrizione..."
+                  th:errorclass="is-invalid"
+                ></textarea>
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('description')}"
+                  th:errors="*{description}"
+                >
+                  Errore descrizione
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="price" class="form-label fw-semibold"
+                  >Prezzo (€)</label
+                >
+                <input
+                  type="number"
+                  min="0"
+                  class="form-control"
+                  id="price"
+                  th:field="*{price}"
+                  placeholder="Inserire prezzo..."
+                  th:errorclass="is-invalid"
+                />
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('price')}"
+                  th:errors="*{price}"
+                >
+                  Errore prezzo
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="imgUrl" class="form-label fw-semibold"
+                  >URL Foto</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imgUrl"
+                  th:field="*{imgUrl}"
+                  placeholder="Url foto"
+                />
+                <div class="form-text text-muted"></div>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button
+                  type="submit"
+                  class="btn btn-success w-100 py-2 shadow-sm fw-bold"
+                >
+                  Salva pianta
+                </button>
+                <a
+                  th:href="@{/plants}"
+                  class="btn btn-outline-secondary w-100 py-2"
+                  >Annulla</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
