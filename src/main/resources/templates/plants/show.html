@@ -32,7 +32,7 @@
 
               <hr class="my-3 text-secondary opacity-25" />
 
-              <h5 class="text-secondary fw-semibold mb-2">Ingredienti:</h5>
+              <h5 class="text-secondary fw-semibold mb-2"></h5>
               <p
                 class="lead text-muted lh-base"
                 th:text="${plant.description}"
@@ -47,18 +47,25 @@
                 <span
                   class="display-6 fw-bold text-success"
                   th:text="${plant.price} + ' €'"
-                  >4.50 €</span
                 >
+                </span>
               </div>
 
-              <!-- Pulsante per tornare al menu principale -->
-              <a
-                th:href="@{/plants}"
-                class="btn btn-primary btn-lg w-100 shadow-sm"
-              >
-                <i class="bi bi-arrow-left-circle me-2"></i> Torna alla lista
-                piante
-              </a>
+              <div class="d-flex gap-2 mt-4 pt-3 border-top">
+                <a
+                  th:href="@{/plants}"
+                  class="btn btn-primary btn-lg flex-grow-1 shadow-sm"
+                >
+                  <i class="bi bi-arrow-left-circle me-2"></i> Torna alla lista
+                  piante
+                </a>
+                <a
+                  th:href="@{/plants/{id}/care(id=${plant.id})}"
+                  class="btn btn-success btn-lg flex-grow-1 shadow-sm"
+                >
+                  <i class="bi bi-plus-circle me-2"></i> Diario di cura
+                </a>
+              </div>
             </div>
           </div>
         </div>
