@@ -2,6 +2,7 @@ package org.java.lessons.bootanical.controller;
 
 import java.util.List;
 
+import org.java.lessons.bootanical.model.Care;
 import org.java.lessons.bootanical.model.Plant;
 import org.java.lessons.bootanical.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,4 +73,13 @@ public class PlantController {
         repository.deleteById(id);
         return "redirect:/plants";
     }
+
+    @GetMapping("/{id}/care")
+    public String care(@PathVariable("id") Integer id, Model model) {
+        Care care = new Care();
+        care.setPlant(repository.findById(id).get());
+        model.addAttribute("care", care);
+        return "care/create";
+    }
+
 }

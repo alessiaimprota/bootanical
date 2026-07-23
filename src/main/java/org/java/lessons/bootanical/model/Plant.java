@@ -39,6 +39,17 @@ public class Plant {
 
     private String imgUrl;
 
+    @OneToMany(mappedBy = "plant")
+    private List<Care> cares;
+
+    public List<Care> getCares() {
+        return this.cares;
+    }
+
+    public void setCares(List<Care> cares) {
+        this.cares = cares;
+    }
+
     public Plant() {
     }
 

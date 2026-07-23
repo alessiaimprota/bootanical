@@ -28,17 +28,15 @@
               <h1
                 class="display-4 fw-bold text-dark mb-3"
                 th:text="${plant.name}"
-              >
-                Margherita
-              </h1>
+              ></h1>
 
               <hr class="my-3 text-secondary opacity-25" />
 
               <h5 class="text-secondary fw-semibold mb-2">Ingredienti:</h5>
-              <p class="lead text-muted lh-base" th:text="${plant.description}">
-                Pomodoro, mozzarella, basilico fresco e un filo d'olio
-                extravergine d'oliva.
-              </p>
+              <p
+                class="lead text-muted lh-base"
+                th:text="${plant.description}"
+              ></p>
             </div>
 
             <div class="mt-4 pt-3 border-top">
@@ -58,7 +56,8 @@
                 th:href="@{/plants}"
                 class="btn btn-primary btn-lg w-100 shadow-sm"
               >
-                <i class="bi bi-arrow-left-circle me-2"></i> Torna al Menu
+                <i class="bi bi-arrow-left-circle me-2"></i> Torna alla lista
+                piante
               </a>
             </div>
           </div>
