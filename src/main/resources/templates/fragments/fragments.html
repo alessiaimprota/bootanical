@@ -15,7 +15,15 @@
     <th:block th:fragment="navbar">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <!-- Sostituito il testo con il logo JPEG usando Thymeleaf -->
+          <a class="navbar-brand" th:href="@{/}">
+            <img
+              th:src="@{/logo.jpg}"
+              alt="Bootanical Logo"
+              height="40"
+              class="d-inline-block align-top"
+            />
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -37,7 +45,6 @@
               <li class="nav-item">
                 <a class="nav-link" th:href="@{/plants}">Piante</a>
               </li>
-
               <li class="nav-item">
                 <a class="nav-link" th:href="@{/plants/create}"
                   >Aggiungi una nuova pianta</a

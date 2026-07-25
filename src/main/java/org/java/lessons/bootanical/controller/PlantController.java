@@ -1,10 +1,9 @@
 package org.java.lessons.bootanical.controller;
 
 import java.util.List;
-
 import org.java.lessons.bootanical.model.Care;
 import org.java.lessons.bootanical.model.Plant;
-import org.java.lessons.bootanical.repository.PlantRepository;
+import org.java.lessons.bootanical.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,23 +16,22 @@ import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 
 @Controller
-
 @RequestMapping("/plants")
 public class PlantController {
 
     @Autowired
-    private PlantRepository repository;
+    private PlantService plantService;
 
     @GetMapping
     public String index(Model model) {
-        List<Plant> plants = repository.findAll();
+        List<Plant> plants = plantService.findAll();
         model.addAttribute("plants", plants);
         return "plants/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
-        Plant plant = repository.findById(id).get();
+        Plant plant = plantService.getById(id);
         model.addAttribute("plant", plant);
         return "plants/show";
     }
@@ -49,37 +47,28 @@ public class PlantController {
         if (bindingResult.hasErrors()) {
             return "plants/create";
         }
-        repository.save(formPlant);
+        plantService.save(formPlant);
         return "redirect:/plants";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("plant", repository.findById(id).get());
+        model.addAttribute("plant", plantService.getById(id));
         return "plants/edit";
     }
 
-    @PostMapping("edit/{id}")
+    @PostMapping("/edit/{id}")
     public String update(@Valid @ModelAttribute("plant") Plant formPlant, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "plants/edit";
         }
-        repository.save(formPlant);
+        plantService.save(formPlant);
         return "redirect:/plants";
     }
 
-    @PostMapping("delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
-        repository.deleteById(id);
+        plantService.deleteById(id);
         return "redirect:/plants";
     }
-
-    @GetMapping("/{id}/care")
-    public String care(@PathVariable("id") Integer id, Model model) {
-        Care care = new Care();
-        care.setPlant(repository.findById(id).get());
-        model.addAttribute("care", care);
-        return "care/create";
-    }
-
 }

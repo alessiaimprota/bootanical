@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diario cure</title>
+    <th:block th:replace="~{fragments/fragments :: style}"></th:block>
+  </head>
+  <body class="bg-light">
+    <th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
+
+    <div class="container mt-5">
+      <div th:if="${plant != null}" class="row g-4">
+        <div class="col-12 col-md-6">
+          <div class="card shadow-sm border-0 overflow-hidden">
+            <img
+              th:src="@{'/' + ${plant.imgUrl}}"
+              class="detail-img"
+              alt="Immagine della pianta"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
+          <div
+            class="bg-white p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-between"
+          >
+            <div>
+              <hr class="my-3 text-secondary opacity-25" />
+              <div>
+                <h1 class="display-4 fw-bold text-dark mb-3">
+                  Diario cure: [[${plant.name}]]
+                </h1>
+
+                <hr class="my-3 text-secondary opacity-25" />
+
+                <ul
+                  th:if="${plant.cares.size() > 0}"
+                  class="list-group list-group-flush mb-4"
+                >
+                  <li
+                    th:each="care : ${plant.cares}"
+                    class="list-group-item px-0 d-flex justify-content-between align-items-center bg-transparent"
+                  >
+                    <div>
+                      <strong class="text-dark" th:text="${care.activity}"
+                        >Attività</strong
+                      >
+                      <p
+                        class="mb-0 text-muted small"
+                        th:text="${care.notes}"
+                      ></p>
+
+                      <span
+                        class="badge bg-light text-secondary border fw-medium mt-1 d-inline-block"
+                        th:text="${care.date}"
+                        >Data</span
+                      >
+                    </div>
+
+                    <form
+                      th:action="@{/care/delete/{id}(id=${care.id})}"
+                      method="POST"
+                      onsubmit="return confirm('Sicuro di voler cancellare?');"
+                    >
+                      <button type="submit" class="btn btn-sm btn-danger">
+                        Elimina
+                      </button>
+                    </form>
+                  </li>
+                </ul>
+
+                <div
+                  th:if="${plant.cares.size() == 0}"
+                  class="text-center py-4 bg-light border rounded mb-4 text-muted small"
+                >
+                  <i class="bi bi-info-circle me-1"></i> Nessuna cura registrata
+                  per questa pianta.
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-top">
+              <div class="d-flex gap-2 mt-4 pt-3 border-top">
+                <a
+                  th:href="@{/plants}"
+                  class="btn btn-primary btn-lg flex-grow-1 shadow-sm"
+                >
+                  <i class="bi bi-arrow-left-circle me-2"></i> Torna alla lista
+                  piante
+                </a>
+                <a
+                  th:href="@{/care/create/{id}(id=${plant.id})}"
+                  class="btn btn-success btn-lg flex-grow-1 shadow-sm"
+                >
+                  <i class="bi bi-plus-circle me-2"></i> Aggiungi cure
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

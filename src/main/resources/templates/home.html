@@ -10,20 +10,43 @@
     <div>
       <th:block th:replace="~{fragments/fragments :: navbar}"></th:block>
     </div>
-    <div class="d-flex justify-content-center align-items-center flex-column">
-      <h1>Bootanical</h1>
-      <p class="w-50">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus dolores
-        impedit facilis saepe recusandae explicabo at soluta laudantium
-        blanditiis, repellendus minima consectetur doloribus fugit maxime
-        consequuntur optio, fuga ipsa tempore?
+    <div
+      class="d-flex justify-content-center align-items-center flex-column text-white text-center py-5 px-3"
+      style="
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url(&quot;/hero.jpg&quot;) no-repeat center center;
+        background-size: cover;
+        min-height: 50vh;
+      "
+    >
+      <h1 class="display-4 fw-bold mb-3">Pannello di Controllo Bootanical</h1>
+
+      <p class="lead max-width-700 mb-4" style="max-width: 700px">
+        Benvenuto nella dashboard amministrativa del tuo vivaio digitale. Da qui
+        puoi gestire in tempo reale il catalogo e la manutenzione del tuo
+        pollice verde.
       </p>
-      <p class="w-50">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. At minus
-        corrupti distinctio placeat debitis voluptate, quam sit culpa doloremque
-        praesentium iste dolor id. Odio, expedita. A temporibus minus
-        perferendis tempora.
-      </p>
+
+      <ul class="list-unstyled text-start" style="max-width: 600px">
+        <li class="mb-2">
+          <i class="bi bi-check-circle-fill text-success me-2"></i
+          ><strong>Modifica le schede botaniche:</strong> aggiorna in ogni
+          momento i dettagli descrittivi, i prezzi e i consigli di esposizione
+          di ogni varietà.
+        </li>
+        <li class="mb-2">
+          <i class="bi bi-check-circle-fill text-success me-2"></i
+          ><strong>Accedi al diario delle cure:</strong> programma e registra
+          tutti gli interventi culturali, i turni di irrigazione e i trattamenti
+          necessari per la salute delle piante.
+        </li>
+        <li>
+          <i class="bi bi-check-circle-fill text-success me-2"></i
+          ><strong>Elimina i prodotti dal catalogo:</strong> rimuovi rapidamente
+          le plantas non più disponibili in vivaio o rimosse dall'inventario.
+        </li>
+      </ul>
     </div>
   </body>
 </html>

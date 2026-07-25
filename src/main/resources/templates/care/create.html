@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cura pianta</title>
+    <title>Aggiungi Intervento di Cura</title>
     <th:block th:replace="~{fragments/fragments :: style}"></th:block>
   </head>
   <body class="bg-light">
@@ -12,115 +12,104 @@
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
-          <div class="card shadow-sm border-0 p-4 rounded">
-            <h1 class="h3 fw-bold text-dark mb-4 text-center">
-              Diario cure per [[${care.plant.getName()}]]
+          <div class="card shadow-sm border-0 p-4 rounded bg-white">
+            <h1 class="h3 fw-bold text-dark mb-2 text-center">
+              Registra Intervento
             </h1>
+            <p class="text-muted text-center mb-4">
+              Per la pianta: <strong>[[${plant.name}]]</strong>
+            </p>
 
-            <!-- <form
-              th:action="@{/plants/store}"
-              th:object="${plant}"
+            <form
+              th:action="@{/care/store}"
+              th:object="${care}"
               method="post"
               novalidate
             >
+              <input type="hidden" th:field="*{plant.id}" />
+
+              <!-- Attività -->
               <div class="mb-3">
-                <label for="name" class="form-label fw-semibold"
-                  >Nome della Pianta</label
+                <label for="activity" class="form-label fw-semibold"
+                  >Attività Eseguita</label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  th:field="*{name}"
-                  placeholder="Nome pianta..."
+                  id="activity"
+                  th:field="*{activity}"
+                  placeholder="Es. Annaffiatura, Potatura..."
                   required
-                  th:errorClass="is-invalid"
+                  th:errorclass="is-invalid"
                 />
-
                 <div
                   class="invalid-feedback"
-                  th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}"
+                  th:if="${#fields.hasErrors('activity')}"
+                  th:errors="*{activity}"
                 >
-                  <ul>
-                    <li
-                      th:each="err : ${#fields.errors('name')}"
-                      th:text="${err}"
-                    ></li>
-                  </ul>
+                  Errore attività
                 </div>
               </div>
 
               <div class="mb-3">
-                <label for="descrizione" class="form-label fw-semibold"
-                  >Descrizione</label
+                <label for="date" class="form-label fw-semibold"
+                  >Data Intervento</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  th:field="*{date}"
+                  required
+                  th:errorclass="is-invalid"
+                />
+                <div
+                  class="invalid-feedback"
+                  th:if="${#fields.hasErrors('date')}"
+                  th:errors="*{date}"
+                >
+                  Errore data
+                </div>
+              </div>
+
+              <!-- Note -->
+              <div class="mb-4">
+                <label for="notes" class="form-label fw-semibold"
+                  >Note e Osservazioni</label
                 >
                 <textarea
                   class="form-control"
-                  id="description"
-                  th:field="*{description}"
+                  id="notes"
+                  th:field="*{notes}"
                   rows="3"
-                  placeholder="Descrizione..."
+                  placeholder="Note aggiuntive..."
                   th:errorclass="is-invalid"
                 ></textarea>
                 <div
                   class="invalid-feedback"
-                  th:if="${#fields.hasErrors('description')}"
-                  th:errors="*{description}"
+                  th:if="${#fields.hasErrors('notes')}"
+                  th:errors="*{notes}"
                 >
-                  Errore descrizione
+                  Errore note
                 </div>
               </div>
 
-              <div class="mb-3">
-                <label for="price" class="form-label fw-semibold"
-                  >Prezzo (€)</label
-                >
-                <input
-                  type="number"
-                  min="0"
-                  class="form-control"
-                  id="price"
-                  th:field="*{price}"
-                  placeholder="Inserire prezzo..."
-                  th:errorclass="is-invalid"
-                />
-                <div
-                  class="invalid-feedback"
-                  th:if="${#fields.hasErrors('price')}"
-                  th:errors="*{price}"
-                >
-                  Errore prezzo
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <label for="imgUrl" class="form-label fw-semibold"
-                  >URL Foto</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="imgUrl"
-                  th:field="*{imgUrl}"
-                  placeholder="Url foto"
-                />
-                <div class="form-text text-muted"></div>
-              </div>
-
+              <!-- Pulsanti di Azione -->
               <div class="d-flex gap-2">
                 <button
                   type="submit"
                   class="btn btn-success w-100 py-2 shadow-sm fw-bold"
                 >
-                  Salva pianta
+                  Salva intervento
                 </button>
                 <a
-                  th:href="@{/plants}"
+                  th:href="@{/care/{id}(id=${plant.id})}"
                   class="btn btn-outline-secondary w-100 py-2"
-                  >Annulla</a
                 >
+                  Annulla
+                </a>
               </div>
-            </form> -->
+            </form>
           </div>
         </div>
       </div>
