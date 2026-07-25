@@ -1,6 +1,7 @@
 package org.java.lessons.bootanical.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.java.lessons.bootanical.model.Plant;
 import org.java.lessons.bootanical.repository.PlantRepository;
@@ -31,6 +32,10 @@ public class PlantService {
 
     public void deleteById(Integer id) {
         plantRepository.deleteById(id);
+    }
+
+    public Optional<Plant> findById(Integer id) {
+        return plantRepository.findById(id);
     }
 
 }

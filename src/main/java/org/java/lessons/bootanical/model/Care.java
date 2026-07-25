@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +40,8 @@ public class Care {
 
     @ManyToOne
     @JoinColumn(name = "plant_id", nullable = false)
+    @JsonBackReference
+
     private Plant plant;
 
     public Integer getId() {

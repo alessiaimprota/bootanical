@@ -4,6 +4,9 @@ import java.security.Identity;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.validation.constraints.NotNull;
 
 import jakarta.annotation.Generated;
@@ -40,6 +43,7 @@ public class Plant {
     private String imgUrl;
 
     @OneToMany(mappedBy = "plant")
+    @JsonManagedReference
     private List<Care> cares;
 
     public List<Care> getCares() {
