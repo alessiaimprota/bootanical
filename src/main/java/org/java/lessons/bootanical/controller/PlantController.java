@@ -1,7 +1,6 @@
 package org.java.lessons.bootanical.controller;
 
 import java.util.List;
-import org.java.lessons.bootanical.model.Care;
 import org.java.lessons.bootanical.model.Plant;
 import org.java.lessons.bootanical.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;

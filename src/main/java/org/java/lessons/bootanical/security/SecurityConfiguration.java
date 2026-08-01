@@ -24,7 +24,7 @@ public class SecurityConfiguration {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/**").permitAll()
-
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/plants", "/plants/**").authenticated()
                         .requestMatchers("/care", "/care/**").authenticated()
 
