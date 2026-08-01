@@ -1,15 +1,10 @@
 package org.java.lessons.bootanical.model;
 
-import java.security.Identity;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.validation.constraints.NotNull;
-
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +14,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.Valid;
 import java.math.BigDecimal;
 
 @Entity

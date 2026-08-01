@@ -1,7 +1,6 @@
 package org.java.lessons.bootanical.service;
 
 import org.java.lessons.bootanical.model.Care;
-import org.java.lessons.bootanical.model.Plant;
 import org.java.lessons.bootanical.repository.CareRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -2,11 +2,8 @@ package org.java.lessons.bootanical.model;
 
 import java.time.LocalDate;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
